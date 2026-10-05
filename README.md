@@ -11,9 +11,11 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6.svg)](https://www.typescriptlang.org/)
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPLv3-yellow.svg)](https://opensource.org/licenses/GPL-3.0)
 
-[🚀 下载客户端 / Download](#-安装与使用--installation) • [☕ 赞助作者 / Sponsor](#-赞助与支持--sponsor)
+[🚀 下载客户端 / Download](#-安装与使用--installation) • [🌟 API 渠道推荐 / Fluxion AI](#fluxion-ai) • [☕ 赞助作者 / Sponsor](#-赞助与支持--sponsor)
 
 </div>
+
+> 💡 **写小说不想折腾 Key？** 试试 [Fluxion AI](https://fluxionai.space/register?source=github&campaign=vela&promo=VELA) —— 一个入口接入并管理全球主流 AI 模型，OpenAI 兼容、开箱即用，**注册即送 $3 API 额度**。👉 [立即领取](https://fluxionai.space/register?source=github&campaign=vela&promo=VELA)
 
 ---
 
@@ -141,19 +143,36 @@ Vela 支持接入多种主流 LLM 服务商，以下是快速配置步骤：
 
 **支持的 LLM 服务商 / Supported LLM Providers:**
 
-`OpenAI` · `DeepSeek` · `Google Gemini` · `Anthropic Claude` · `Ollama (Local)` · `智谱 GLM (Zhipu)` · `MiniMax` · `SiliconFlow` · `Any OpenAI-compatible API`
+`OpenAI` · `DeepSeek` · `Google Gemini` · `Anthropic Claude` · `Ollama (Local)` · `智谱 GLM (Zhipu)` · `MiniMax` · `SiliconFlow` · `Fluxion AI (推荐渠道)` · `Any OpenAI-compatible API`
+
+> 💡 **推荐渠道**：如果没有官方 Key 或想降低成本，可使用 [Fluxion AI](https://fluxionai.space/register?source=github&campaign=vela&promo=VELA)（OpenAI 兼容），在上方第 3 步中选择「自定义 / OpenAI 兼容」，填入 Fluxion AI 的 `Base URL` + `API Key` 即可。注册即送 **$3** 额度。
+
+---
+
+<span id="fluxion-ai"></span>
+
+## 🌟 推荐渠道：Fluxion AI — 一个入口，接入并管理全球主流 AI 模型
+
+Fluxion AI 面向个人开发者、技术团队与企业，通过统一 API 接入并管理全球主流 AI 模型；通过多线路动态调度提升可用性，模型表现、响应时间与费用透明可查。使用 Fable 5.1 时，相较 Claude 官方 API 费用，Fluxion AI 最高可节省约 90%。
+
+- ✅ **统一 OpenAI-Compatible API**，完美适配 Vela，开箱即用
+- 🔀 **多线路动态调度**，可用性更高
+- 📊 **模型表现、响应时间与费用透明可查**
+- 🎁 **立即访问并注册，即可获得 $3 API 额度**
+
+👉 **专属链接：[立即注册领取 $3 额度](https://fluxionai.space/register?source=github&campaign=vela&promo=VELA)**
+
+<a href="https://fluxionai.space/register?source=github&campaign=vela&promo=VELA" target="_blank">
+  <img src="https://drive.google.com/thumbnail?id=1nABI15ra_qGKoccMZbJpeMyl6iEFijKe&sz=w1000" width="800" alt="Fluxion AI — 一个入口，接入并管理全球主流 AI 模型"/>
+</a>
+
+> 封面原图：[Google Drive 查看](https://drive.google.com/file/d/1nABI15ra_qGKoccMZbJpeMyl6iEFijKe/view?usp=sharing)
 
 ---
 
 ## 🤝 赞助与支持 / Sponsor
 
 Vela 开源版由独立开发者利用业余时间热情驱动。如果这个工具有效提升了您的小说创作效率，欢迎扫码赞助！您的每一份支持都是我持续迭代的最大动力 ❤️
-
-### 📢 微信群交流 / WeChat Group
-
-<p align="left">
-  <img src="public/buyme/group.png" width="300" alt="Vela 微信群 WeChat Group"/>
-</p>
 
 ### 👤 技术交流与合作 / Contact
 
@@ -162,22 +181,6 @@ Vela 开源版由独立开发者利用业余时间热情驱动。如果这个工
 <p align="left">
   <img src="public/buyme/wechat.jpg" width="200" alt="个人微信 Author WeChat"/>
 </p>
-
-### 💰 赞助二维码 / Donate QR Codes
-
-<p align="left">
-  <img src="public/buyme/wepay.jpg" width="200" alt="微信赞助 WeChat Donate"/>
-  &nbsp;&nbsp;&nbsp;
-  <img src="public/buyme/alipay.jpg" width="200" alt="支付宝赞助 Alipay Donate"/>
-</p>
-
-### 🎁 推荐 API 服务商 / Recommended API Providers
-
-以下是经过测试、与 Vela 完美兼容的 API 服务商，使用推荐链接注册可享受专属优惠，同时也是对本项目的支持：
-
-* **智谱 AI (GLM Coding)**：国内顶流编程大模型，20+ 主流工具全适配 👉 [立即参与「拼好模」](https://www.bigmodel.cn/glm-coding?ic=7IJ2G7AE6W)
-* **MiniMax (海螺 AI)**：Token Plan 含语音/视频/生图权益，新用户 **9折** 优惠 👉 [立即订阅](https://platform.minimaxi.com/subscribe/token-plan?code=EjhLD7uCvT&source=link)
-
 ---
 
 ## 🏗️ 技术架构 / Tech Stack

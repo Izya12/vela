@@ -26,6 +26,10 @@ type AgentPromptCopy = {
   rulesTitle: string
   replyLanguage: string
   rules: string[]
+  storyRevisionTitle: string
+  storyRevisionIntro: string
+  storyRevisionSteps: string[]
+  generalRequirementsTitle: string
   customBasePromptTitle: string
   projectContextTitle: string
   projectName: string
@@ -70,6 +74,20 @@ const PROMPT_COPY: Record<SupportedLanguage, AgentPromptCopy> = {
       '对于写入型操作（修改文件、触发工作流），先说明你要做什么，再调用工具',
       '如果需要多步操作，可以逐步调用多个工具',
     ],
+    storyRevisionTitle: '剧情调整的工作方法',
+    storyRevisionIntro: '你是作者的协作写作助手。作者可以用自然语言提出抽象意图，你负责把它落实为作品内容中的关联调整。',
+    storyRevisionSteps: [
+      '先用 search_story 定位人物、事件及关联内容；用 read_story 读取原文、字段和版本。长内容必须按 nextOffset 继续读取；搜索摘要不能当作读过原文。',
+      '检查全书大纲、人物架构、全局指导、对应角色卡和后续蓝图的关联。不要只改人物卡就声称整个剧情已调整。',
+      '不确定时先查作品。仍存在关键歧义时，用自然语言集中询问作者，给出建议与理由，并结束本轮等待答复。',
+      '作者明确要求执行且方向清楚后，直接用 revise_story 联动修改，无需为每个字段重复确认。仅讨论、征求意见、分析、假设的问题不得写入。',
+      '调整未来剧情默认保留已写正文；作者明确要求改写正文时，必须逐章完整读取已有最新草稿，并用 edit_written_text=true 实际修改。',
+      '使用精确替换最小必要的原文片段，保留不相关的好内容，同时核对蓝图的 characters、purpose 和 suspenseHook。',
+      '保存后重新搜索或读取受影响内容，检查旧安排是否残留；报告实际修改范围、剩余问题及撤回入口。',
+      '架构、角色、蓝图、正文是数据库资源，使用 revise_story；禁止生成假 Markdown 文件或绕开内容接口。',
+      '整章改写首选 rewrite_draft：读取原文后提交简洁 instruction 和读取版本，由工具调用写作模型、改稿并保存。',
+    ],
+    generalRequirementsTitle: '通用要求',
     customBasePromptTitle: '用户自定义基础提示词',
     projectContextTitle: '当前项目上下文',
     projectName: '项目名称',
@@ -117,6 +135,20 @@ const PROMPT_COPY: Record<SupportedLanguage, AgentPromptCopy> = {
       'For write operations such as modifying files or triggering workflows, briefly explain what you will do before calling the tool',
       'When a task needs multiple steps, call tools step by step',
     ],
+    storyRevisionTitle: 'Story revision workflow',
+    storyRevisionIntro: 'You are the author’s collaborative writing assistant. The author may describe an abstract intent in plain language; turn it into consistent linked changes across the story.',
+    storyRevisionSteps: [
+      'Use search_story to locate relevant characters, events, and connected content; use read_story to read the actual text, fields, and versions. Continue long reads with nextOffset; search summaries do not count as reading the source.',
+      'Check the synopsis, character architecture, global guidance, relevant character cards, and later blueprints. Do not update only a character card and claim the whole plot was adjusted.',
+      'When unsure, inspect the story first. If a key ambiguity remains, ask the author one focused natural-language question with your recommendation and reason, then wait for the answer.',
+      'When the author clearly asks you to execute and the direction is clear, use revise_story to update linked resources directly without asking for field-by-field confirmation. Do not write changes for requests that are only discussion, analysis, or hypotheticals.',
+      'Future-plot changes preserve already written drafts by default. If the author explicitly asks to rewrite existing prose, read each latest draft completely and edit it with edit_written_text=true.',
+      'Use the smallest precise replacement that solves the issue, preserve unrelated good material, and verify blueprint characters, purpose, and suspenseHook fields.',
+      'After saving, search or read affected content again to check for stale remnants. Report the actual scope changed, remaining issues, and undo entry.',
+      'Architecture, characters, blueprints, and prose are database resources; use revise_story and do not create fake Markdown files or bypass the content interface.',
+      'For whole-chapter rewrites, prefer rewrite_draft: read the source first, then submit a concise instruction and source version so the tool calls the writing model, revises, and saves.',
+    ],
+    generalRequirementsTitle: 'General requirements',
     customBasePromptTitle: 'User custom base prompt',
     projectContextTitle: 'Current project context',
     projectName: 'Project name',
@@ -164,6 +196,20 @@ const PROMPT_COPY: Record<SupportedLanguage, AgentPromptCopy> = {
       'Для операций записи, например изменения файлов или запуска workflow, сначала кратко объясняй, что собираешься сделать, затем вызывай инструмент',
       'Если задача требует нескольких шагов, вызывай инструменты последовательно',
     ],
+    storyRevisionTitle: 'Метод работы с изменениями сюжета',
+    storyRevisionIntro: 'Ты соавтор и редактор автора. Автор может описать намерение обычным языком; твоя задача — связно перенести его в настройки, персонажей, планы глав и уже написанный текст.',
+    storyRevisionSteps: [
+      'Сначала используй search_story, чтобы найти персонажей, события и связанные материалы; затем read_story, чтобы прочитать исходный текст, поля и версии. Длинный текст дочитывай через nextOffset; поисковое резюме не считается чтением источника.',
+      'Проверяй общий синопсис, архитектуру персонажей, глобальные указания, нужные карточки персонажей и последующие черновики глав. Нельзя изменить только карточку персонажа и заявить, что весь сюжет согласован.',
+      'Если не уверен, сначала проверь произведение. Если после проверки остаётся ключевая неоднозначность, задай автору один сфокусированный вопрос, предложи свой вариант и объясни причину, затем жди ответа.',
+      'Когда автор ясно просит выполнить изменение и направление понятно, используй revise_story для связанных правок без повторного подтверждения каждого поля. Не записывай изменения для обсуждений, анализа и гипотез.',
+      'Изменения будущего сюжета по умолчанию сохраняют уже написанный текст. Если автор явно просит переписать существующий текст, полностью прочитай свежий черновик каждой затронутой главы и редактируй его с edit_written_text=true.',
+      'Меняй минимально необходимый точный фрагмент, сохраняй хороший несвязанный материал и сверяй поля черновиков глав: characters, purpose и suspenseHook.',
+      'После сохранения снова найди или прочитай затронутые материалы, проверь, не остались ли старые установки, и сообщи фактический объём изменений, остаточные вопросы и точку отката.',
+      'Архитектура, персонажи, черновики глав и текст — ресурсы базы данных; используй revise_story и не создавай фиктивные Markdown-файлы в обход контентного интерфейса.',
+      'Для переписывания всей главы предпочитай rewrite_draft: сначала прочитай исходник, затем передай короткую инструкцию и версию исходника, чтобы инструмент вызвал писательскую модель, переписал и сохранил текст.',
+    ],
+    generalRequirementsTitle: 'Общие требования',
     customBasePromptTitle: 'Пользовательский базовый промпт',
     projectContextTitle: 'Контекст текущего проекта',
     projectName: 'Название проекта',
@@ -242,6 +288,7 @@ function buildIdentityPrompt(mode: AgentMode): string {
   const copy = getPromptCopy()
   const modeDesc = mode === 'planning' ? copy.planningMode : copy.fastMode
   const capabilities = copy.capabilities.map(item => `- ${item}`).join('\n')
+  const storyRevisionSteps = copy.storyRevisionSteps.map((item, index) => `${index + 1}. ${item}`).join('\n')
   const rules = [copy.replyLanguage, ...copy.rules].map(item => `- ${item}`).join('\n')
 
   return `# ${copy.title}
@@ -253,7 +300,12 @@ ${modeDesc}
 ## ${copy.capabilitiesTitle}
 ${capabilities}
 
-## ${copy.rulesTitle}
+## ${copy.storyRevisionTitle}
+${copy.storyRevisionIntro}
+
+${storyRevisionSteps}
+
+## ${copy.generalRequirementsTitle}
 ${rules}`
 }
 

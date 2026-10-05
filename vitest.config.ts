@@ -1,4 +1,3 @@
-/// <reference types="vitest/config" />
 import { defineConfig } from 'vitest/config'
 import path from 'node:path'
 
@@ -16,6 +15,8 @@ export default defineConfig({
       'electron/__tests__/window-state.test.ts',
       'src/i18n/__tests__/i18n.test.ts',
       'src/services/agent/__tests__/context-builder.test.ts',
+      'src/services/__tests__/*.test.ts',
+      'electron/__tests__/{ollama-models,rehearsal-*,story-revision}.test.ts',
     ],
     globals: false,
   },

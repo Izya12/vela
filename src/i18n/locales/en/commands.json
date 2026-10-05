@@ -40,6 +40,11 @@
     "unfilled": "(Not filled)"
   },
   "directory": {
+    "invalidRange": "Invalid blueprint range. Check chapter counts and bounds.",
+    "emptyResult": "No valid blueprints for chapters {{from}}–{{to}}. Stopped without reporting success. The response may be empty, truncated, or unsupported. Retry with fewer chapters.",
+    "missingChapters": "Chapters {{from}}–{{to}} contain gaps. Stopped to avoid skipping chapters; earlier saved batches remain available.",
+    "noSavedBlueprints": "No saved blueprints could be verified. This task cannot complete.",
+    "verifiedSaved": "Verified {{count}} saved blueprints",
     "generatingBlueprintsRange": "Generating blueprints for chapters {{from}}–{{to}}...",
     "cancelled": "Cancelled",
     "generatingBatch": "Generating chapters {{from}}–{{to}}...",
@@ -252,6 +257,7 @@
     "charExtractDone": "✅ Character card extraction complete ({{count}} characters total)",
     "charExtractError": "AI returned incorrect character data format, no valid characters extracted. Raw content preview: {{preview}}",
     "charExtractFailed": "Unable to extract character cards",
+    "charExtractSaveFailed": "Failed to save character cards",
     "charRepairTitle": "🔧 Repair: Character Card Extraction",
     "charRepairStepName": "Retry character card extraction",
     "charRepairStepDesc": "Retry failed character card extraction step",
@@ -281,6 +287,7 @@
     "repairFinalizeContentFailed": "Content extraction failed: ID={{id}}",
     "dirAppendTitle": "📋 Continue Chapter Blueprints (from chapter {{chapter}})",
     "dirFullTitle": "📋 Generate Chapter Blueprints (Full)",
+    "dirRangeTitle": "📋 Generate Chapter Blueprints ({{from}}–{{to}})",
     "dirStepReadArch": "Read architecture",
     "dirStepReadArchDesc": "Load project architecture from SQLite",
     "dirReadingArch": "Reading project architecture...",

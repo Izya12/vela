@@ -40,6 +40,11 @@
     "unfilled": "（未填写）"
   },
   "directory": {
+    "invalidRange": "蓝图生成范围无效，请检查总章数和起止章节。",
+    "emptyResult": "第 {{from}}–{{to}} 章没有解析出有效蓝图，已停止，未标记成功。模型可能返回空内容、截断 JSON 或不支持的格式；请减少每次数量后重试。",
+    "missingChapters": "第 {{from}}–{{to}} 章返回的编号不连续，已停止以避免跳过章节。之前已保存的批次仍可查看。",
+    "noSavedBlueprints": "没有可确认的已保存蓝图，任务不能标记为完成。",
+    "verifiedSaved": "已核对并保存 {{count}} 章蓝图",
     "generatingBlueprintsRange": "生成第 {{from}}–{{to}} 章蓝图...",
     "cancelled": "已取消",
     "generatingBatch": "正在生成第 {{from}}–{{to}} 章...",
@@ -252,6 +257,7 @@
     "charExtractDone": "✅ 角色卡提取完毕（共 {{count}} 个角色）",
     "charExtractError": "AI 返回的角色数据格式不正确，未提取到有效角色。原始内容预览: {{preview}}",
     "charExtractFailed": "无法提取角色卡",
+    "charExtractSaveFailed": "角色卡保存失败",
     "charRepairTitle": "🔧 修复：角色卡提取",
     "charRepairStepName": "重试角色卡提取",
     "charRepairStepDesc": "重试失败的角色卡提取步骤",
@@ -281,6 +287,7 @@
     "repairFinalizeContentFailed": "正文提取失败: ID={{id}}",
     "dirAppendTitle": "📋 续写章节蓝图（从第 {{chapter}} 章）",
     "dirFullTitle": "📋 生成章节蓝图（全量）",
+    "dirRangeTitle": "📋 生成章节蓝图（第 {{from}}–{{to}} 章）",
     "dirStepReadArch": "读取架构",
     "dirStepReadArchDesc": "从 SQLite 加载项目架构信息",
     "dirReadingArch": "读取项目架构信息...",
