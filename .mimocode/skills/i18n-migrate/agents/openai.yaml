@@ -1,4 +1,0 @@
-interface:
-  display_name: "I18n Migration"
-  short_description: "Migrate hardcoded UI strings to i18n translation keys in TypeScript/JavaScript projects"
-  default_prompt: "Audit this codebase for hardcoded user-visible strings and migrate them to i18n translation keys using react-i18next patterns"
