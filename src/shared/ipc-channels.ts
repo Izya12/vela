@@ -26,6 +26,15 @@ export interface GlobalConfig {
   editorFontSize: number
   editorFontFamily: string
   autoSaveInterval: number
+  locale?: 'zh-CN' | 'en' | 'ru'
+  agentBasePrompt?: string
+  windowState?: {
+    width: number
+    height: number
+    x?: number
+    y?: number
+    maximized?: boolean
+  }
   proxy?: {
     enabled: boolean
     type: 'http' | 'socks5'
@@ -241,6 +250,7 @@ export interface DatabaseChannels {
   'db:blueprint-get': { args: [chapterNumber: number]; return: BlueprintData | null }
   'db:blueprint-upsert': { args: [data: BlueprintData]; return: { success: boolean; error?: string } }
   'db:blueprint-upsert-many': { args: [items: BlueprintData[]]; return: { success: boolean; error?: string } }
+  'db:blueprint-replace-all': { args: [items: BlueprintData[]]; return: { success: boolean; error?: string } }
   'db:blueprint-update-notes': { args: [chapterNumber: number, notes: string]; return: { success: boolean; error?: string } }
 
   // 3. characters

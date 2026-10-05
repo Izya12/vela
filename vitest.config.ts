@@ -11,8 +11,11 @@ export default defineConfig({
     include: [
       'src/services/narrative-consistency/__tests__/narrative-consistency.test.ts',
       'src/services/narrative-consistency/__tests__/perf-regression.test.ts',
+      'electron/__tests__/blueprint-repository.test.ts',
       'electron/__tests__/ipc-validation.test.ts',
+      'electron/__tests__/window-state.test.ts',
       'src/i18n/__tests__/i18n.test.ts',
+      'src/services/agent/__tests__/context-builder.test.ts',
     ],
     globals: false,
   },

@@ -8,6 +8,7 @@ import { parseSlashCommand, parseMentions, mentionsToToolCalls } from '../servic
 import { toolRegistry } from '../services/agent/tool-registry'
 import type { ToolArtifact } from '../services/agent/tool-registry'
 import i18n from '../i18n'
+import { ipc } from '../services/ipc-client'
 
 // ===== 类型定义 =====
 
@@ -371,7 +372,13 @@ export const useAgentStore = create<AgentState>()((set, get) => ({
       }
 
       // 构建系统提示词（包含项目上下文 + Tool 列表）
-      const systemPrompt = buildAgentSystemPrompt(currentConv.mode)
+      let customBasePrompt = ''
+      try {
+        customBasePrompt = (await ipc.invoke('config:get')).agentBasePrompt?.trim() ?? ''
+      } catch {
+        customBasePrompt = ''
+      }
+      const systemPrompt = buildAgentSystemPrompt(currentConv.mode, customBasePrompt)
 
       // ===== P1-5: @ 提及预取 =====
       let enrichedUserMessage = content.trim()

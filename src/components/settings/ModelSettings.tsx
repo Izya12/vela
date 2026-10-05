@@ -245,7 +245,7 @@ function ModelForm({
           <Save size={13} />
           {saving ? t('models.saving') : t('models.save')}
         </Button>
-        <Button variant="ghost" onClick={onCancel}>{t('draftEditor.cancel')}</Button>
+        <Button variant="ghost" onClick={onCancel}>{t('cancel', { ns: 'common' })}</Button>
       </div>
       {testResult && (
         <div className={`text-xs p-2 rounded ${testResult.success ? 'bg-green-500/10 text-green-500 border border-green-500/20' : 'bg-red-500/10 text-red-500 border border-red-500/20'} break-all`}>

@@ -12,7 +12,7 @@ import i18n from '../../i18n'
 import {
   loadDirectoryBlueprints,
   saveChapterBlueprint,
-  saveAllBlueprints,
+  replaceAllBlueprints,
   createDirectoryWorkflow,
   type ChapterBlueprint,
   type DirectoryWorkflowParams,
@@ -134,7 +134,7 @@ export default function ChapterCardEditor() {
   const handleSaveAll = async () => {
     if (!currentProject) return
     setSaving(true)
-    await saveAllBlueprints(blueprints)
+    await replaceAllBlueprints(blueprints)
     setSaving(false)
     setDirty(false)
     addLog('info', t('chapterCard.allBlueprintsSaved', { count: blueprints.length }))
